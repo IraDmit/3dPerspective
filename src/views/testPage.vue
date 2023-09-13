@@ -1,5 +1,10 @@
 <template>
   <div>
+    <div class="preloader">
+      <div class="el"></div>
+      <div class="el1"></div>
+      <div class="el2"></div>
+    </div>
     <section>
       <button @click="animationBox">box</button>
       <button @click="animationBox2">box2</button>
@@ -26,6 +31,7 @@ gsap.registerPlugin(ScrollTrigger);
 export default {
   mounted() {
     this.animationBox3();
+    this.animationPreloader();
   },
   methods: {
     animationBox() {
@@ -84,6 +90,63 @@ export default {
         },
       });
     },
+    animationPreloader() {
+      gsap
+        .timeline()
+        .to(
+          ".el",
+          {
+            left: "51%",
+            top: "60%",
+            onComplete() {
+              gsap.to(`.el`, {
+                scale: 100,
+                duration: 9,
+                backgroundImage:
+                  "radial-gradient(circle, #82c91e 43%, #3bc9db 96%)",
+              });
+            },
+          },
+          1
+        )
+        .to(
+          ".el1",
+          {
+            right: "18%",
+            top: "36%",
+            onComplete() {
+              gsap.to(`.el1`, {
+                scale: 100,
+                duration: 9,
+                backgroundImage:
+                  "radial-gradient(circle, #228be6 23%, #3bc9db 86%)",
+              });
+            },
+          },
+          ">"
+        )
+        .to(
+          ".el2",
+          {
+            top: "37%",
+            right: "63%",
+            onComplete() {
+              gsap.to(`.el2`, {
+                scale: 100,
+                duration: 9,
+                backgroundImage:
+                  "radial-gradient(circle, #7950f2 23%, #748ffc 74%)",
+              });
+            },
+          },
+          ">"
+        )
+        .to(".preloader", {
+          opacity: 0,
+          delay: 2,
+          zIndex: -10,
+        });
+    },
   },
 };
 </script>
@@ -118,5 +181,39 @@ section {
   width: 49%;
   height: 100%;
   border: 5px solid greenyellow;
+}
+.preloader {
+  position: absolute;
+  top: 0;
+  left: 0;
+  // position: relative;
+  background-color: #fff;
+  overflow: hidden;
+  width: 100%;
+  height: 100vh;
+  .el {
+    position: absolute;
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+    background-color: greenyellow;
+    top: -100vh;
+  }
+  .el1 {
+    top: -100vh;
+    position: absolute;
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    background-color: aquamarine;
+  }
+  .el2 {
+    top: -100vh;
+    position: absolute;
+    border-radius: 50%;
+    width: 300px;
+    height: 300px;
+    background-color: mediumslateblue;
+  }
 }
 </style>
