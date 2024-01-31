@@ -1,33 +1,33 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
+import Vue from "vue";
+import VueRouter from "vue-router";
 
-Vue.use(VueRouter)
+Vue.use(VueRouter);
 
 const routes = [
   {
-    path: '/',
-    name: 'home',
-    component: () => import(/* webpackChunkName: "test" */ '../views/homePage.vue')
+    path: "/",
+    name: "home",
+    component: () =>
+      import(/* webpackChunkName: "test" */ "../views/3d-perpective-Page.vue"),
   },
   {
-    path: '/test',
-    name: 'test',
-    component: () => import(/* webpackChunkName: "test" */ '../views/testPage.vue')
+    path: "/perspective",
+    name: "perspective",
+    component: () =>
+      import(/* webpackChunkName: "test" */ "../views/testPage.vue"),
   },
-  // {
-  //   path: '/about',
-  //   name: 'about',
-  //   // route level code-splitting
-  //   // this generates a separate chunk (about.[hash].js) for this route
-  //   // which is lazy-loaded when the route is visited.
-  //   component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
-  // }
-]
+  {
+    path: "/horizontalScroll",
+    name: "horizontalScroll",
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/horizontal-page.vue"),
+  },
+];
 
 const router = new VueRouter({
-  mode: 'history',
+  mode: "history",
   base: process.env.BASE_URL,
-  routes
-})
+  routes,
+});
 
-export default router
+export default router;
